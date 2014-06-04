@@ -1,0 +1,5 @@
+TODO:
+
+-implement autodetection of Ableton Push device
+-separate colormap creation and video rendering
+-separate push rendering and video frame acquiring

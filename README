@@ -1,0 +1,13 @@
+PUSH DISPLAY
+============
+
+This draft demo application shows video from camera on Ableton Push 8x8 pads.
+Ableton Push pads has 127 fixed colors, so to achieve "realistic" color reproduction application builds mapping from RGB colorspace to Ableton Push's 127 colors.
+
+Application requires Processing 2 and the MidiBus MIDI library to run. You need a webcam also. There is no automatic midi port detection for push, so may be you'll need to change this line: 
+	pushMidiBus = new MidiBus(this, 2, 2);
+with port numbers matching your configuration. Actually, only output port is needed. 
+
+After start you'll see four 8x8 screens on the monitor with slightly different colors, and  some pictures on Push of course.
+
+
