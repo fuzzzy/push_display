@@ -2,12 +2,15 @@ PUSH DISPLAY
 ============
 
 This draft demo application shows video from camera on Ableton Push 8x8 pads.
-Ableton Push pads has 127 fixed colors, so to achieve "realistic" color reproduction application builds mapping from RGB colorspace to Ableton Push's 127 colors.
+Its (Push's) pads are capable of 127 fixed colors, so to achieve "realistic" color reproduction application builds mapping from RGB colorspace to Ableton Push's 127 colors.
 
-Application requires Processing 2 and the MidiBus MIDI library to run. You need a webcam also. There is no automatic midi port detection for push, so may be you'll need to change this line: 
+Application requires Processing 2 <http://www.processing.org> and the MidiBus <http://www.smallbutdigital.com/themidibus.php> library to run. You need at least a webcam also. And Push. There is no automatic midi port detection for Push, so may be you'll need to change this line: 
 	pushMidiBus = new MidiBus(this, 2, 2);
 with port numbers matching your configuration. Actually, only output port is needed. 
 
-After start you'll see four 8x8 screens on the monitor with slightly different colors, and  some pictures on Push of course.
+After app starts you'll see four 8x8 screens with same image, but slightly different colors. And some pictures on Push of course.
 
+Few words about what is under the hood:
+To control Push pads colors, you need to send note messages. All 64 pads are represented by corresponding notes, from 36 (bottom left pad) to 99 (top right). Pad color depends on velocity. Since velocity is in range from 0 to 127, there are 127 colors, and all them represented on images 111.jpg (velocity is 0 to 63, starting from bottom left, and going up by lines) and 222.jpg (64 to 127). Note channel influence on how pad is lit, there are 16 channels, and switching them, you can change if pads are simply on, or they are blinking, or fading with different speed, and so on. I'm using channel 1 because it's simply "glow with necessary color". 
 
+Thing I haven't tried, but that may give a good result, is video filtering. Feel free to try change video contrast, denoise it, convert to black and white, other colorspace, like Lab, convert to negative, or whatever. Processing is a great playground for things like this.
